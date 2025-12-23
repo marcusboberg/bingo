@@ -134,16 +134,11 @@ function App() {
   const winningCells = useMemo(() => {
     const set = new Set<string>()
     activeMarks.forEach((block, blockIndex) => {
-      for (let col = 0; col < 5; col += 1) {
-        let allMarked = true
-        for (let row = 0; row < 5; row += 1) {
-          if (!block?.[row]?.[col]) {
-            allMarked = false
-            break
-          }
-        }
+      for (let row = 0; row < 5; row += 1) {
+        const rowArr = block?.[row]
+        const allMarked = rowArr?.every(Boolean)
         if (allMarked) {
-          for (let row = 0; row < 5; row += 1) {
+          for (let col = 0; col < 5; col += 1) {
             set.add(`${blockIndex}-${row}-${col}`)
           }
         }
