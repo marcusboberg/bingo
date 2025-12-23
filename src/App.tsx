@@ -131,6 +131,27 @@ function App() {
     return (state.marks[state.activeUser]?.[state.activeGameIndex] ?? []) as boolean[][][]
   }, [state])
 
+  const winningCells = useMemo(() => {
+    const set = new Set<string>()
+    activeMarks.forEach((block, blockIndex) => {
+      for (let col = 0; col < 5; col += 1) {
+        let allMarked = true
+        for (let row = 0; row < 5; row += 1) {
+          if (!block?.[row]?.[col]) {
+            allMarked = false
+            break
+          }
+        }
+        if (allMarked) {
+          for (let row = 0; row < 5; row += 1) {
+            set.add(`${blockIndex}-${row}-${col}`)
+          }
+        }
+      }
+    })
+    return set
+  }, [activeMarks])
+
   const handleUserSelect = (user: Player) => {
     setState((prev) => {
       const base = prev ?? createInitialState()
@@ -223,7 +244,7 @@ function App() {
         </header>
 
         <main className="ticket-body">
-          <GameBoard game={activeGame} marks={activeMarks} onToggle={toggleCell} />
+          <GameBoard game={activeGame} marks={activeMarks} onToggle={toggleCell} winningCells={winningCells} />
         </main>
       </div>
 

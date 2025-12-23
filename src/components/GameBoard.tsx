@@ -4,11 +4,12 @@ type Props = {
   game: Game
   marks: boolean[][][]
   onToggle: (blockIndex: number, rowIndex: number, colIndex: number) => void
+  winningCells?: Set<string>
 }
 
 const HEADERS = ['B', 'I', 'N', 'G', 'O']
 
-export function GameBoard({ game, marks, onToggle }: Props) {
+export function GameBoard({ game, marks, onToggle, winningCells }: Props) {
   return (
     <div className="game-board">
       {game.map((block, blockIndex) => (
@@ -23,10 +24,11 @@ export function GameBoard({ game, marks, onToggle }: Props) {
               const blockMarks = marks?.[blockIndex] ?? []
               return row.map((value, colIndex) => {
                 const isMarked = blockMarks?.[rowIndex]?.[colIndex] ?? false
+                const isWinner = winningCells?.has(`${blockIndex}-${rowIndex}-${colIndex}`) ?? false
                 return (
                   <button
                     type="button"
-                    className={`cell ${isMarked ? 'marked' : ''}`}
+                    className={`cell ${isMarked ? 'marked' : ''} ${isWinner ? 'winner' : ''}`}
                     key={`${rowIndex}-${colIndex}`}
                     onClick={() => onToggle(blockIndex, rowIndex, colIndex)}
                   >
