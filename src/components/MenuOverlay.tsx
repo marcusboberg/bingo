@@ -7,7 +7,6 @@ type Props = {
   onSelectUser: (user: Player) => void
   onSelectGame: (index: number) => void
   onClose: () => void
-  onExportState?: () => Promise<void> | void
   onImportState?: (text: string) => Promise<void> | void
 }
 
@@ -19,7 +18,6 @@ export function MenuOverlay({
   onSelectUser,
   onSelectGame,
   onClose,
-  onExportState,
   onImportState,
 }: Props) {
   const [importText, setImportText] = useState('')
@@ -65,17 +63,12 @@ export function MenuOverlay({
           </div>
         </div>
 
-        {(onExportState || onImportState) && (
+        {onImportState && (
           <div className="menu-section subtle">
-            <div className="menu-label">Export / Import</div>
-            <div className="export-row">
-              <button type="button" className="ghost-button" onClick={() => onExportState?.()}>
-                Exportera till clipboard
-              </button>
-            </div>
+            <div className="menu-label">Importera state</div>
             <textarea
               className="import-area"
-              placeholder='Klistra in JSON här och tryck "Importera".'
+              placeholder='Klistra in JSON och tryck "Importera".'
               value={importText}
               onChange={(e) => setImportText(e.target.value)}
             />

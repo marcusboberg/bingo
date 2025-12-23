@@ -173,18 +173,6 @@ function App() {
     })
   }
 
-  const handleExport = async () => {
-    if (!state) return
-    try {
-      const data = JSON.stringify(state)
-      await navigator.clipboard.writeText(data)
-      setToast('State kopierad till clipboard')
-    } catch (error) {
-      console.error(error)
-      setToast('Kunde inte kopiera')
-    }
-  }
-
   const handleImport = async (text: string) => {
     try {
       const parsed = JSON.parse(text)
@@ -250,7 +238,6 @@ function App() {
           onSelectUser={handleUserSelect}
           onSelectGame={handleGameSelect}
           onClose={() => setShowMenu(false)}
-          onExportState={handleExport}
           onImportState={handleImport}
         />
       )}
