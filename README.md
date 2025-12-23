@@ -41,6 +41,14 @@ Mobilanpassad bingoapp för Marcus och Philip. Ingen inloggning, ingen backend. 
 - **Android (Chrome)**: öppna sidan, meny ⋮ → "Installera app" / "Lägg till på startskärmen".
 - Appen har manifest + service worker (auto-update) och fungerar offline efter första inladdning.
 
+## Deploy på GitHub Pages (bingo.marcusboberg.se)
+- Custom domain: `public/CNAME` är satt till `bingo.marcusboberg.se`. Lägg till samma domän i GitHub → Settings → Pages.
+- Workflow: `.github/workflows/deploy.yml` bygger och publicerar till Pages vid push till `main`.
+- Bas-URL:
+  - Med custom domain (bingo.marcusboberg.se): behåll `VITE_BASE='/'` (default).
+  - Utan custom domain och om du kör `username.github.io/bingo`: sätt `VITE_BASE='/bingo/'` i workflow-steget “Build”.
+- Efter första deploy: surfa till sidan och installera PWA som vanligt.
+
 ## Design/UX
 - Mobil-first, optimerad för Safari iOS och Chrome Android.
 - Flytande menyknapp (☰) för att byta användare/spel och för export/import.

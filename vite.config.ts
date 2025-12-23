@@ -3,27 +3,29 @@ import { defineConfig } from 'vite'
 import { VitePWA } from 'vite-plugin-pwa'
 import type { ManifestOptions } from 'vite-plugin-pwa'
 
+const base = process.env.VITE_BASE || '/'
+
 const manifest: Partial<ManifestOptions> = {
   name: 'Bingos uppesittarkväll 2025',
   short_name: 'Bingo 2025',
-  start_url: '/',
-  scope: '/',
+  start_url: '.',
+  scope: '.',
   display: 'standalone',
   background_color: '#0f1b14',
   theme_color: '#0f1b14',
   icons: [
     {
-      src: '/icons/icon-192.png',
+      src: 'icons/icon-192.png',
       sizes: '192x192',
       type: 'image/png',
     },
     {
-      src: '/icons/icon-512.png',
+      src: 'icons/icon-512.png',
       sizes: '512x512',
       type: 'image/png',
     },
     {
-      src: '/icons/icon-512-maskable.png',
+      src: 'icons/icon-512-maskable.png',
       sizes: '512x512',
       type: 'image/png',
       purpose: 'maskable',
@@ -33,6 +35,7 @@ const manifest: Partial<ManifestOptions> = {
 
 // https://vite.dev/config/
 export default defineConfig({
+  base,
   plugins: [
     react(),
     VitePWA({
