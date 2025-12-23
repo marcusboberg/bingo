@@ -4,6 +4,7 @@ import GameBoard from './components/GameBoard'
 import MenuOverlay from './components/MenuOverlay'
 import UserPicker from './components/UserPicker'
 import { loadState, saveState } from './db'
+import { playClickSound } from './sound'
 import { TICKETS } from './tickets'
 import type { AppState, Player } from './types'
 
@@ -163,6 +164,7 @@ function App() {
   }
 
   const toggleCell = (blockIndex: number, rowIndex: number, colIndex: number) => {
+    playClickSound()
     setState((prev) => {
       if (!prev) return prev
       const user = prev.activeUser
