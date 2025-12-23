@@ -72,6 +72,7 @@ function App() {
   const [showMenu, setShowMenu] = useState(false)
   const [showUserPicker, setShowUserPicker] = useState(false)
   const [toast, setToast] = useState<string | null>(null)
+  const [isLandscape, setIsLandscape] = useState(false)
 
   useEffect(() => {
     let mounted = true
@@ -106,6 +107,18 @@ function App() {
     const t = window.setTimeout(() => setToast(null), 2200)
     return () => window.clearTimeout(t)
   }, [toast])
+
+  useEffect(() => {
+    const mq = window.matchMedia('(orientation: landscape)')
+    const update = () => setIsLandscape(mq.matches || window.innerWidth > window.innerHeight)
+    update()
+    mq.addEventListener('change', update)
+    window.addEventListener('resize', update)
+    return () => {
+      mq.removeEventListener('change', update)
+      window.removeEventListener('resize', update)
+    }
+  }, [])
 
   const activeTicket = state ? TICKETS[state.activeUser] : null
   const activeGame = useMemo(() => {
@@ -243,6 +256,18 @@ function App() {
       )}
 
       {toast && <div className="toast">{toast}</div>}
+
+      {isLandscape && !showUserPicker && activeTicket && (
+        <div className="landscape-overlay">
+          <div className="landscape-content">
+            <div className="landscape-label">Serie</div>
+            <div className="landscape-value">{activeTicket.series}</div>
+            <div className="landscape-label">Lott</div>
+            <div className="landscape-value strong">{activeTicket.ticketNumber}</div>
+            <div className="landscape-hint">Vrid tillbaka för att spela</div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

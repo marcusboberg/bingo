@@ -27,7 +27,7 @@
   align-items: center;
   padding: 10px 12px;
   border-radius: 16px;
-  background: linear-gradient(120deg, rgba(233, 66, 66, 0.22), rgba(12, 46, 27, 0.6));
+  background: linear-gradient(120deg, rgba(45, 216, 129, 0.18), rgba(12, 46, 27, 0.6));
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }
@@ -45,7 +45,7 @@
 
 .user-pill {
   grid-column: span 2;
-  background: linear-gradient(135deg, #f53c3c, #ff6b6b);
+  background: linear-gradient(135deg, #2dd881, #22c55e);
   color: #0c1613;
   font-size: 14px;
 }
@@ -68,7 +68,7 @@
 }
 
 .meta-line.emphasis .meta-value {
-  color: #ffefe5;
+  color: #c6f6d9;
 }
 
 .ticket-body {
@@ -90,15 +90,6 @@
   padding: 12px;
   border: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
-}
-
-.block-title {
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-  font-size: 13px;
-  color: #b9d5c4;
-  margin: 2px 4px 10px;
 }
 
 .grid {
@@ -139,10 +130,10 @@
 }
 
 .cell.marked {
-  background: linear-gradient(145deg, #e53e3e, #f97373);
+  background: linear-gradient(145deg, #2dd881, #22c55e);
   color: #0d1b15;
-  box-shadow: 0 6px 16px rgba(229, 62, 62, 0.35);
-  border-color: rgba(229, 62, 62, 0.6);
+  box-shadow: 0 6px 16px rgba(34, 197, 94, 0.35);
+  border-color: rgba(34, 197, 94, 0.6);
 }
 
 .floating-button {
@@ -153,7 +144,7 @@
   height: 56px;
   border-radius: 50%;
   border: none;
-  background: linear-gradient(135deg, #ffdfbd, #ff9b71);
+  background: linear-gradient(135deg, #2dd881, #22c55e);
   color: #0f1b14;
   font-size: 24px;
   font-weight: 800;
@@ -219,7 +210,7 @@
 }
 
 .chip-active {
-  background: linear-gradient(135deg, #f53c3c, #ff8a6c);
+  background: linear-gradient(135deg, #2dd881, #22c55e);
   color: #0c1613;
   border-color: rgba(255, 255, 255, 0.25);
 }
@@ -270,7 +261,7 @@
 }
 
 .toast {
-  position: fixed;
+  position: absolute;
   bottom: 16px;
   left: 50%;
   transform: translateX(-50%);
@@ -281,6 +272,46 @@
   font-weight: 700;
   letter-spacing: 0.01em;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+.landscape-overlay {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at 20% 30%, rgba(45, 216, 129, 0.2), rgba(12, 30, 23, 0.95));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 12;
+  padding: 20px;
+}
+
+.landscape-content {
+  text-align: center;
+  color: #eafcf1;
+  gap: 8px;
+  display: grid;
+}
+
+.landscape-label {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 14px;
+  opacity: 0.85;
+}
+
+.landscape-value {
+  font-size: clamp(36px, 7vw, 72px);
+  font-weight: 800;
+}
+
+.landscape-value.strong {
+  font-size: clamp(48px, 9vw, 96px);
+}
+
+.landscape-hint {
+  margin-top: 6px;
+  opacity: 0.8;
+  font-weight: 600;
 }
 
 .user-picker {

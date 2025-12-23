@@ -13,7 +13,6 @@ export function GameBoard({ game, marks, onToggle }: Props) {
     <div className="game-board">
       {game.map((block, blockIndex) => (
         <div className="block" key={blockIndex}>
-          <div className="block-title">Block {blockIndex + 1}</div>
           <div className="grid">
             {HEADERS.map((label) => (
               <div className="grid-header" key={label}>
